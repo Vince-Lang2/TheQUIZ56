@@ -170,7 +170,7 @@ th{background:var(--green);color:var(--white);position:sticky;top:0}
     <div class="done" id="done">
       <div class="done-badge">✓</div>
       <h2>Response submitted</h2>
-      <p>Your answers have been recorded. 67.......</p>
+      <p>Your answers have been recorded. Son......67</p>
     </div>
   </div>
 </section>
@@ -185,7 +185,7 @@ th{background:var(--green);color:var(--white);position:sticky;top:0}
 <div class="overlay" id="adminLogin">
   <div class="modal">
     <h2>Admin access</h2>
-    <p>67.</p>
+    <p>Son.....</p>
     <input id="adminPassword" type="password" placeholder="Password">
     <div class="modal-actions">
       <button class="btn btn-beige" id="cancelAdmin">Cancel</button>
@@ -231,23 +231,23 @@ th{background:var(--green);color:var(--white);position:sticky;top:0}
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
 import { getFirestore, collection, addDoc, getDocs, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
-import { getAuth, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
 
 const QUESTIONS = [{"q": "A social worker organizes a support group for parents who are struggling with parenting challenges. This is an example of what level of intervention?", "c": ["Micro", "Mezzo", "Macro", "Individual"]}, {"q": "A social worker advocates for a new government policy to improve access to healthcare services among poor communities. This is an example of:", "c": ["Micro intervention", "Mezzo intervention", "Macro intervention", "Individual assessment"]}, {"q": "Which statement best describes mezzo social work?", "c": ["It focuses only on one person's emotional concerns.", "It focuses on groups, organizations, and small communities.", "It focuses only on government policies.", "It avoids community involvement."]}, {"q": "Which situation BEST represents micro social work?", "c": ["Creating a national poverty reduction policy", "Organizing a community disaster response program", "Counseling a client experiencing personal difficulties", "Establishing a nationwide social welfare system"]}, {"q": "The main goal of macro social work is to:", "c": ["Provide individual counseling only", "Change larger social systems and conditions", "Solve personal relationship problems", "Provide short-term emotional support"]}, {"q": "In social work, a need refers to a condition, resource, support, or change that helps improve a person's:", "c": ["Wealth only", "Well-being and functioning", "Social status only", "Personal achievements only"]}, {"q": "A community lacks transportation services, making it difficult for residents to access schools and hospitals. This is an example of:", "c": ["Individual need", "Family need", "Community need", "Personal need"]}, {"q": "Poverty caused by unequal opportunities, discrimination, and limited access to resources is considered a:", "c": ["Physiological need", "Structural/societal need", "Individual need", "Family need"]}, {"q": "According to Maslow’s Hierarchy of Needs, which need must generally be addressed first?", "c": ["Esteem needs", "Self-actualization needs", "Physiological needs", "Belongingness needs"]}, {"q": "A person seeking acceptance, friendship, and family connection is trying to fulfill which need?", "c": ["Safety need", "Belongingness and love need", "Esteem need", "Self-actualization need"]}, {"q": "During assessment, the social worker primarily aims to identify the client's:", "c": ["Needs, problems, strengths, and resources", "Mistakes and weaknesses only", "Financial status only", "Social position only"]}, {"q": "A social worker and client create goals and decide strategies to solve a problem. This stage is called:", "c": ["Planning", "Evaluation", "Termination", "Assessment"]}, {"q": "Which stage involves applying strategies such as counseling, referrals, and community programs?", "c": ["Engagement", "Intervention", "Assessment", "Termination"]}, {"q": "A social worker checks whether the client's situation improved after receiving assistance. This process is called:", "c": ["Planning", "Engagement", "Evaluation", "Assessment"]}, {"q": "Why is client participation important in the social work process?", "c": ["It allows clients to actively participate in solving their own problems.", "It removes the responsibility of the social worker.", "It prevents decision-making.", "It eliminates the need for assessment."]}, {"q": "A social worker first gathers information about a client's family situation, challenges, and available resources. Which step is this?", "c": ["Assessment", "Termination", "Intervention", "Evaluation"]}, {"q": "Which social work principle emphasizes allowing clients to make choices and participate in decisions affecting their lives?", "c": ["Self-determination", "Confidentiality", "Acceptance", "Individualization"]}, {"q": "A student saves ₱5,000 in a bank with an annual simple interest rate of 4% for 3 years. How much interest will the student earn? (2 points)", "c": ["₱400", "₱500", "₱600", "₱700"]}, {"q": "Which part of the cell controls all activities of the cell and contains the genetic material (DNA)? (2 points)", "c": ["Cell membrane", "Cytoplasm", "Nucleus", "Mitochondria"]}, {"q": "Solve the quadratic equation (2 points): x² − 5x + 6 = 0", "c": ["x = 1 and x = 6", "x = 2 and x = 3", "x = -2 and x = -3", "x = 3 and x = 5"]}, {"q": "Which social work setting involves for-profit businesses or corporate companies hiring social workers to support their employees or run community projects?", "c": ["Public Sector Setting", "Private Sector Setting", "Non-profit Organization Setting", "Civil Society Setting"]}, {"q": "Which area of social work focuses on gathering data, facts, and statistics to understand social problems and evaluate whether programs are actually effective?", "c": ["Social Work Policy", "Social Action", "Social Work Research", "Community Organizing"]}, {"q": "Which social work concept involves campaigning and fighting for large-scale changes in laws, policies, or public awareness to achieve justice?", "c": ["Community Organization", "Social Case Work", "Social Action", "Social Group Work"]}, {"q": "A social worker meets weekly with a family to counsel them through a crisis and help them access immediate food assistance. This face-to-face intervention directly addresses the clients' immediate challenges. What classification best describes the method being used in this scenario?", "c": ["Secondary Methods", "Macro Practice", "Indirect Methods", "Primary Methods"]}, {"q": "During a typhoon in Metro Manila, many families lost their homes and need food, temporary shelter, and cash assistance. A social worker from DSWD goes to evacuation centers to assess needs, process 4Ps and AICS applications, and coordinate relief distribution. Which 'Setting in Social Work' best describes where this social worker is employed?", "c": ["Hospital Setting", "School Setting", "Government Setting", "Private Agency Setting"]}, {"q": "In a barangay in Quezon City, there is a high rate of teenage pregnancy, lack of health centers, and many out-of-school youth. The social worker meets with barangay officials, parents, teachers, and youth leaders to identify problems and create programs for health education, livelihood, and scholarships for the whole barangay. What is the MAIN focus of the social worker's effort in this situation?", "c": ["To help one student with personal problems", "To help a small group build better relationships", "To address the social, educational, and health needs of the community", "To provide direct counseling to teenage mothers only"]}, {"q": "Ana is a licensed social worker. She works at the Department of Social Welfare and Development. Her daily tasks include implementing child protection programs, assisting senior citizens with their social pension, and monitoring beneficiaries of government aid. What is the main role of Ana as a social worker in the GOVERNMENT setting?", "c": ["To conduct therapy sessions for one client only", "To help meet people's basic needs through government programs and services", "To organize community members to solve their own problems", "To run a private counseling center"]}, {"q": "What is the most appropriate definition of civil society?", "c": ["Government institutions that enforce the law.", "Voluntary organizations and citizen actions that are independent of the state and the market.", "Private businesses that provide products and services.", "Political parties seeking to gain positions in government."]}, {"q": "Which of the following is the most important characteristic of civil society?", "c": ["Mandatory membership", "Direct power to enforce laws.", "Voluntary participation and collective action.", "Primary goal of making a profit."]}, {"q": "Which is the clearest example of civil society?", "c": ["An NGO that advocates for the rights of indigenous peoples.", "A government agency that provides public service.", "A company that sells food.", "A court that decides on legal cases."]}, {"q": "Why is civil society important in a democratic society?", "c": ["Because it can replace the government.", "Because it provides a way for citizens to participate, express themselves, and organize.", "Because it holds all political power.", "Because it is the primary law-making body."]}, {"q": "What is the primary purpose of a social worker in a school setting?", "c": ["To teach academic subjects.", "To help students overcome personal or family problems that affect their education.", "To manage the school's finances.", "To organize sports competitions."]}, {"q": "Which of the following is an example of a school setting for social work?", "c": ["Public market.", "Guidance Office", "Police station", "Shopping mall"]}, {"q": "What is Social Case Work?", "c": ["Helping a community solve its problems", "Helping a group of people share their experiences", "Helping an individual or family solve personal and emotional problems through a one-on-one approach", "Conducting research about social problems."]}, {"q": "What is the main goal of community organizing in a local neighborhood?", "c": ["To tell residents what rules to follow", "To help residents unite and solve problems together", "To build private commercial stores", "To replace local government officials entirely"]}, {"q": "Which of the following best describes the process of 'Community Organization'?", "c": ["Assigning individual tasks to residents from an outside corporate office", "Mobilizing an entire neighborhood to work together, look for resources, and solve local problems", "Hiring an external security team to enforce strict rules within a residential area", "Providing financial loans to individual business owners without community involvement"]}, {"q": "What is the main role of a social worker in these community settings?", "c": ["To guide and support people as they help themselves", "To act as the boss of the neighborhood", "To make all decisions for the residents", "To provide funding without ever visiting the area"]}, {"q": "According to the passage, what color does the Arctic fox's fur turn during the summer season?", "c": ["Pure white", "Brownish-gray", "Dark black", "Spotted yellow"], "passage": "The Arctic fox, a small predator native to the Arctic regions, is known for its incredible adaptability to cold environments. One of its most remarkable features is its fur, which changes color with the seasons for camouflage; it turns white during the winter to blend in with the snow and brownish-gray in the summer to match the tundra. Another notable adaptation is its ability to reduce its metabolic rate in extreme cold, conserving energy and minimizing food requirements. This ability is crucial for survival during the harsh winter months when food is scarce."}, {"q": "Based on the passage, what is the primary benefit of the Arctic fox lowering its metabolic rate?", "c": ["It helps the fox hunt small prey more efficiently.", "It allows the fox to change its fur color faster between seasons.", "It conserves energy and lowers the amount of food needed to survive.", "It increases its core body temperature to fight extreme cold."], "passage": "The Arctic fox, a small predator native to the Arctic regions, is known for its incredible adaptability to cold environments. One of its most remarkable features is its fur, which changes color with the seasons for camouflage; it turns white during the winter to blend in with the snow and brownish-gray in the summer to match the tundra. Another notable adaptation is its ability to reduce its metabolic rate in extreme cold, conserving energy and minimizing food requirements. This ability is crucial for survival during the harsh winter months when food is scarce."}, {"q": "According to the passage, where is the Arctic fox naturally found?", "c": ["In tropical rainforests worldwide.", "In mountainous desert areas.", "Native to the Arctic regions.", "In heavily forested swamp environments."], "passage": "The Arctic fox, a small predator native to the Arctic regions, is known for its incredible adaptability to cold environments. One of its most remarkable features is its fur, which changes color with the seasons for camouflage; it turns white during the winter to blend in with the snow and brownish-gray in the summer to match the tundra. Another notable adaptation is its ability to reduce its metabolic rate in extreme cold, conserving energy and minimizing food requirements. This ability is crucial for survival during the harsh winter months when food is scarce."}];
 const ANSWER_KEY = [1, 2, 1, 2, 1, 1, 2, 1, 2, 1, 0, 0, 1, 2, 0, 0, 0, 2, 2, 1, 1, 2, 1, 1, 2, 0, 1, 1, 1, 0, 1, 1, 2, 2, 3, 2, 2, 1, 2, 2];
 const WEIGHTS = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2];
 
 const MAX_VIOLATIONS = 5;
-const INTERNAL_ADMIN_ACCOUNT = "group56admin@example.com";
-const REQUIRED_ADMIN_PASSWORD = "ssjdhasjdhasjdhdkjsdhasuwoeiquoewqueqweqweqwe";
+const ADMIN_PASSWORD = "ssjdhasjdhasjdhdkjsdhasuwoeiquoewqueqweqweqwe";
 const QUESTION_SECONDS = 30;
 const ATTENTION_INTERVAL = 3000;
 const ATTENTION_WINDOW = 3000;
 
+
+
 // ==========================================================
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBIRD2jWCkb-lxD6mCAjMNU8zb-I0JHCFs",
+    apiKey: "AIzaSyBIRD2jWCkb-lxD6mCAjMNU8zb-I0JHCFs",
   authDomain: "quiz1-e0a41.firebaseapp.com",
   projectId: "quiz1-e0a41",
   storageBucket: "quiz1-e0a41.firebasestorage.app",
@@ -256,14 +256,14 @@ const firebaseConfig = {
   measurementId: "G-0STRYLKRR2"
 };
 
+
 // ==========================================================
 
-let app=null, db=null, auth=null, firebaseReady=false;
+let app=null, db=null, firebaseReady=false;
 try {
   if (firebaseConfig.apiKey && !firebaseConfig.apiKey.startsWith("PASTE_")) {
     app = initializeApp(firebaseConfig);
     db = getFirestore(app);
-    auth = getAuth(app);
     firebaseReady = true;
   }
 } catch (err) {
@@ -537,19 +537,9 @@ $("cancelAdmin").onclick=()=>$("adminLogin").style.display="none";
 $("enterAdmin").onclick=async()=>{
   const entered=$("adminPassword").value;
 
-  if(entered !== REQUIRED_ADMIN_PASSWORD){
+  if(entered !== ADMIN_PASSWORD){
     alert("Incorrect password.");
     return;
-  }
-
-  if(firebaseReady){
-    try {
-      await signInWithEmailAndPassword(auth, INTERNAL_ADMIN_ACCOUNT, entered);
-    } catch(err) {
-      console.error(err);
-      alert("Firebase admin login failed. Admin authentication failed. Check the Firebase admin account configuration.");
-      return;
-    }
   }
 
   $("adminLogin").style.display="none";
@@ -558,12 +548,7 @@ $("enterAdmin").onclick=async()=>{
 };
 
 $("adminPassword").addEventListener("keydown",e=>{if(e.key==="Enter")$("enterAdmin").click()});
-$("closeAdmin").onclick=async()=>{
-  $("adminPanel").style.display="none";
-  if(firebaseReady && auth?.currentUser){
-    try{await signOut(auth)}catch(e){console.error(e)}
-  }
-};
+$("closeAdmin").onclick=()=>{$("adminPanel").style.display="none"};
 </script>
 </body>
 </html>
