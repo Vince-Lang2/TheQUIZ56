@@ -2,98 +2,25 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Research Defense | Ballad is Watching</title>
 
 <style>
-
-  @media(max-width:600px){
-
-body{
-align-items:flex-start;
-padding-top:20px;
-}
-
-.card{
-width:95%;
-padding:20px;
-margin-bottom:40px;
-}
-
-textarea{
-height:140px;
-font-size:16px;
-}
-
-button{
-position:relative;
-z-index:20;
-}
-
-}
-  window.submitAnswer = async function(){
-
-const btn = document.querySelector("#submitBtn");
-
-if(!answer.value.trim()){
-alert("Write your answer");
-return;
-}
-
-btn.innerText="Saving...";
-btn.disabled=true;
-
-
-try{
-
-await addDoc(collection(db,"responses"),{
-
-name:participant,
-
-group:questions[current][0],
-
-question:questions[current][1],
-
-answer:answer.value,
-
-expectedAnswer:questions[current][2],
-
-timestamp:serverTimestamp()
-
-});
-
-
-status.innerText="✓ Saved Successfully";
-
-next.classList.remove("hidden");
-
-
-}
-
-catch(error){
-
-alert(
-"Firebase Error:\n"+error.message
-);
-
-console.error(error);
-
-}
-
-
-btn.innerText="Submit Answer";
-btn.disabled=false;
-
-}
 *{box-sizing:border-box;font-family:Inter,Arial,sans-serif}
+
 body{
-margin:0;min-height:100vh;color:white;display:flex;
-align-items:center;justify-content:center;
+margin:0;
+min-height:100vh;
+color:white;
+display:flex;
+align-items:center;
+justify-content:center;
 background:
 radial-gradient(circle at top,#2563eb55,transparent 35%),
 radial-gradient(circle at bottom,#9333ea55,transparent 35%),
 #020617;
 }
+
 .card{
 width:min(95%,900px);
 padding:35px;
@@ -103,62 +30,132 @@ backdrop-filter:blur(25px);
 border:1px solid rgba(255,255,255,.2);
 box-shadow:0 25px 80px #0008;
 }
-h1{text-align:center;font-size:42px;background:linear-gradient(90deg,#38bdf8,#facc15);-webkit-background-clip:text;color:transparent}
+
+h1{
+text-align:center;
+font-size:42px;
+background:linear-gradient(90deg,#38bdf8,#facc15);
+-webkit-background-clip:text;
+color:transparent;
+}
+
 input,textarea{
-width:100%;padding:16px;margin-top:15px;
-border-radius:15px;background:#ffffff18;color:white;
+width:100%;
+padding:16px;
+margin-top:15px;
+border-radius:15px;
+background:#ffffff18;
+color:white;
 border:1px solid #ffffff33;
 }
-textarea{height:180px}
-button{
-width:100%;padding:16px;margin-top:15px;border:0;
-border-radius:15px;background:linear-gradient(90deg,#2563eb,#06b6d4);
-color:white;font-weight:bold;cursor:pointer
+
+textarea{
+height:180px;
 }
-.hidden{display:none}
+
+button{
+width:100%;
+padding:16px;
+margin-top:15px;
+border:0;
+border-radius:15px;
+background:linear-gradient(90deg,#2563eb,#06b6d4);
+color:white;
+font-weight:bold;
+cursor:pointer;
+}
+
+button:disabled{
+opacity:.6;
+}
+
+.hidden{
+display:none;
+}
 
 .question{
-padding:25px;background:#ffffff12;border-radius:20px;
-font-size:22px;line-height:1.5;margin-top:20px
+padding:25px;
+background:#ffffff12;
+border-radius:20px;
+font-size:22px;
+line-height:1.5;
+margin-top:20px;
 }
 
 .admin-btn{
-position:fixed;right:20px;bottom:20px;
-width:45px;height:45px;border-radius:50%;
-background:#ffffff22;display:flex;align-items:center;
-justify-content:center;cursor:pointer;
+position:fixed;
+right:20px;
+bottom:20px;
+width:45px;
+height:45px;
+border-radius:50%;
+background:#ffffff22;
+display:flex;
+align-items:center;
+justify-content:center;
+cursor:pointer;
 }
 
 .modal,.dashboard{
-display:none;position:fixed;inset:0;
-background:#020617ee;padding:30px;overflow:auto;
+display:none;
+position:fixed;
+inset:0;
+background:#020617ee;
+padding:30px;
+overflow:auto;
 z-index:10;
 }
 
 .panel{
-max-width:900px;margin:auto;padding:30px;
-background:#ffffff12;border-radius:25px;
+max-width:900px;
+margin:auto;
+padding:30px;
+background:#ffffff12;
+border-radius:25px;
 backdrop-filter:blur(20px);
 }
 
 .response{
-background:white;color:#111;padding:20px;
-border-radius:15px;margin:15px 0;
+background:white;
+color:#111;
+padding:20px;
+border-radius:15px;
+margin:15px 0;
+}
+
+@media(max-width:600px){
+
+body{
+display:block;
+padding-top:20px;
+}
+
+.card{
+width:95%;
+margin:auto;
+padding:20px;
+}
+
+textarea{
+height:140px;
+}
+
+button{
+min-height:50px;
+}
+
 }
 </style>
 </head>
 
 <body>
-  <button id="submitBtn" onclick="submitAnswer()">
-Submit Answer
-</button>
 
 <div class="card" id="home">
 <h1>⚔️ Research Defense</h1>
 <h2 style="text-align:center">"Ballad is Watching"</h2>
-<p style="text-align:center">Research Defense System</p>
 
 <input id="name" placeholder="Enter your name">
+
 <button onclick="start()">Begin Defense</button>
 </div>
 
@@ -172,7 +169,7 @@ Submit Answer
 
 <textarea id="answer" placeholder="Write your defense answer"></textarea>
 
-<button onclick="submitAnswer()">Submit Answer</button>
+<button id="submitBtn" onclick="submitAnswer()">Submit Answer</button>
 
 <button id="next" class="hidden" onclick="nextQuestion()">Next Question →</button>
 
@@ -185,13 +182,15 @@ Submit Answer
 
 
 <div class="modal" id="adminLogin">
-
 <div class="panel">
-<h2>🔐 Admin Login</h2>
-<input id="password" type="password" placeholder="Password">
-<button onclick="login()">Login</button>
-</div>
 
+<h2>🔐 Admin Login</h2>
+
+<input id="password" type="password" placeholder="Password">
+
+<button onclick="login()">Login</button>
+
+</div>
 </div>
 
 
@@ -211,62 +210,8 @@ Submit Answer
 
 
 <script type="module">
-  window.submitAnswer = async function(){
 
-const btn = document.querySelector("#submitBtn");
-
-if(!answer.value.trim()){
-alert("Write your answer");
-return;
-}
-
-btn.innerText="Saving...";
-btn.disabled=true;
-
-
-try{
-
-await addDoc(collection(db,"responses"),{
-
-name:participant,
-
-group:questions[current][0],
-
-question:questions[current][1],
-
-answer:answer.value,
-
-expectedAnswer:questions[current][2],
-
-timestamp:serverTimestamp()
-
-});
-
-
-status.innerText="✓ Saved Successfully";
-
-next.classList.remove("hidden");
-
-
-}
-
-catch(error){
-
-alert(
-"Firebase Error:\n"+error.message
-);
-
-console.error(error);
-
-}
-
-
-btn.innerText="Submit Answer";
-btn.disabled=false;
-
-}
-
-import { initializeApp } 
+import {initializeApp}
 from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 
 import {
@@ -279,7 +224,7 @@ serverTimestamp
 from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 
-const firebaseConfig = {
+const firebaseConfig={
 apiKey:"AIzaSyBIRD2jWCkb-lxD6mCAjMNU8zb-I0JHCFs",
 authDomain:"quiz1-e0a41.firebaseapp.com",
 projectId:"quiz1-e0a41",
@@ -295,7 +240,7 @@ const db=getFirestore(app);
 
 
 const questions=[
-["Research Rationale","Why did your study consider attitudes toward AI as a possible predictor of AI ethical awareness?","Students’ cognitive beliefs, emotional responses, and behavioral tendencies toward AI may influence ethical evaluation."],
+["Research Rationale","Why did your study consider attitudes toward AI as a possible predictor of AI ethical awareness?","Students' cognitive beliefs, emotional responses, and behavioral tendencies toward AI may influence ethical evaluation."],
 ["Research Rationale","Why separate attitudes toward AI and ethical awareness?","Attitude describes beliefs, feelings, and behaviors while ethical awareness focuses on ethical recognition."],
 ["Literature Review","Why combine AI attitudes and ethics in one predictive model?","It determines whether attitude dimensions explain ethical awareness dimensions."],
 ["Framework","Why use the Tripartite Model of Attitude?","It explains cognition, affect, and behavior."],
@@ -313,50 +258,78 @@ window.start=function(){
 
 participant=document.getElementById("name").value.trim();
 
-if(!participant)return alert("Enter name");
+if(!participant){
+alert("Enter name");
+return;
+}
 
 home.classList.add("hidden");
 game.classList.remove("hidden");
 
 nextQuestion();
 
-}
+};
 
 
 function nextQuestion(){
 
 if(used.length===questions.length){
+
 alert("Finished");
 return;
+
 }
+
+let index;
 
 do{
-current=Math.floor(Math.random()*questions.length);
+index=Math.floor(Math.random()*questions.length);
 }
-while(used.includes(current));
+while(used.includes(index));
 
-used.push(current);
+
+current=index;
+used.push(index);
 
 group.innerText=questions[current][0];
-counter.innerText="Question "+used.length;
+counter.innerText="Question "+used.length+" / "+questions.length;
 question.innerText=questions[current][1];
+
 answer.value="";
 next.classList.add("hidden");
+status.innerText="";
 
 }
+
 
 
 window.submitAnswer=async function(){
 
-if(!answer.value.trim())
-return alert("Write answer");
+const btn=document.getElementById("submitBtn");
+
+const text=document.getElementById("answer").value.trim();
+
+
+if(!text){
+
+alert("Write answer");
+return;
+
+}
+
+
+btn.disabled=true;
+btn.innerText="Saving...";
+
+
+try{
 
 await addDoc(collection(db,"responses"),{
 
 name:participant,
 group:questions[current][0],
 question:questions[current][1],
-answer:answer.value,
+answer:text,
 expectedAnswer:questions[current][2],
 timestamp:serverTimestamp()
 
@@ -367,32 +340,61 @@ status.innerText="✓ Saved to Firebase";
 
 next.classList.remove("hidden");
 
+
 }
+
+catch(error){
+
+alert("Firebase Error: "+error.message);
+console.error(error);
+
+}
+
+
+btn.disabled=false;
+btn.innerText="Submit Answer";
+
+
+};
+
 
 
 window.nextQuestion=nextQuestion;
 
 
 window.openAdmin=function(){
+
 adminLogin.style.display="block";
-}
+
+};
 
 
 window.login=async function(){
 
-if(password.value!=="2312312312315")
-return alert("Wrong password");
+if(password.value!=="2312312312315"){
+
+alert("Wrong password");
+return;
+
+}
+
 
 adminLogin.style.display="none";
 dashboard.style.display="block";
 
-responses.innerHTML="";
+responses.innerHTML="Loading...";
+
 
 const snap=await getDocs(collection(db,"responses"));
+
+
+responses.innerHTML="";
+
 
 snap.forEach(doc=>{
 
 let x=doc.data();
+
 
 responses.innerHTML+=`
 
@@ -400,24 +402,30 @@ responses.innerHTML+=`
 
 <b>${x.name}</b><br><br>
 
-Question:<br>${x.question}<br><br>
+<b>Group:</b> ${x.group}<br><br>
 
-Answer:<br>${x.answer}<br><br>
+<b>Question:</b><br>${x.question}<br><br>
 
-Expected:<br>${x.expectedAnswer}
+<b>Answer:</b><br>${x.answer}<br><br>
 
-</div>`;
+<b>Expected:</b><br>${x.expectedAnswer}
+
+</div>
+
+`;
 
 });
 
-}
+};
+
 
 
 window.logout=function(){
 
 dashboard.style.display="none";
 
-}
+};
+
 
 </script>
 
