@@ -6,6 +6,85 @@
 <title>Research Defense | Ballad is Watching</title>
 
 <style>
+
+  @media(max-width:600px){
+
+body{
+align-items:flex-start;
+padding-top:20px;
+}
+
+.card{
+width:95%;
+padding:20px;
+margin-bottom:40px;
+}
+
+textarea{
+height:140px;
+font-size:16px;
+}
+
+button{
+position:relative;
+z-index:20;
+}
+
+}
+  window.submitAnswer = async function(){
+
+const btn = document.querySelector("#submitBtn");
+
+if(!answer.value.trim()){
+alert("Write your answer");
+return;
+}
+
+btn.innerText="Saving...";
+btn.disabled=true;
+
+
+try{
+
+await addDoc(collection(db,"responses"),{
+
+name:participant,
+
+group:questions[current][0],
+
+question:questions[current][1],
+
+answer:answer.value,
+
+expectedAnswer:questions[current][2],
+
+timestamp:serverTimestamp()
+
+});
+
+
+status.innerText="✓ Saved Successfully";
+
+next.classList.remove("hidden");
+
+
+}
+
+catch(error){
+
+alert(
+"Firebase Error:\n"+error.message
+);
+
+console.error(error);
+
+}
+
+
+btn.innerText="Submit Answer";
+btn.disabled=false;
+
+}
 *{box-sizing:border-box;font-family:Inter,Arial,sans-serif}
 body{
 margin:0;min-height:100vh;color:white;display:flex;
@@ -70,6 +149,9 @@ border-radius:15px;margin:15px 0;
 </head>
 
 <body>
+  <button id="submitBtn" onclick="submitAnswer()">
+Submit Answer
+</button>
 
 <div class="card" id="home">
 <h1>⚔️ Research Defense</h1>
@@ -129,6 +211,60 @@ border-radius:15px;margin:15px 0;
 
 
 <script type="module">
+  window.submitAnswer = async function(){
+
+const btn = document.querySelector("#submitBtn");
+
+if(!answer.value.trim()){
+alert("Write your answer");
+return;
+}
+
+btn.innerText="Saving...";
+btn.disabled=true;
+
+
+try{
+
+await addDoc(collection(db,"responses"),{
+
+name:participant,
+
+group:questions[current][0],
+
+question:questions[current][1],
+
+answer:answer.value,
+
+expectedAnswer:questions[current][2],
+
+timestamp:serverTimestamp()
+
+});
+
+
+status.innerText="✓ Saved Successfully";
+
+next.classList.remove("hidden");
+
+
+}
+
+catch(error){
+
+alert(
+"Firebase Error:\n"+error.message
+);
+
+console.error(error);
+
+}
+
+
+btn.innerText="Submit Answer";
+btn.disabled=false;
+
+}
 
 import { initializeApp } 
 from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
