@@ -2,249 +2,132 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<title>Group 5 and 6 QUIZ</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Research Defense | Ballad is Watching</title>
 <style>
-:root {
-  --green:#1f5a45;
-  --green-2:#2f755b;
-  --green-soft:#e8f2ed;
-  --beige:#f3ecdf;
-  --beige-2:#e5d8c5;
-  --white:#ffffff;
-  --black:#151a18;
-  --muted:#5f6964;
-  --line:#d8d0c4;
+:root{
+ --bg:#020617;
+ --glass:rgba(255,255,255,.10);
+ --border:rgba(255,255,255,.18);
+ --blue:#38bdf8;
+ --gold:#facc15;
 }
-*{box-sizing:border-box}
-html,body{margin:0;min-height:100%;background:var(--beige);color:var(--black);font-family:"Trebuchet MS",Arial,sans-serif;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
-body{background:radial-gradient(circle at top left,rgba(255,255,255,.78),transparent 32%),linear-gradient(135deg,var(--beige),#eee4d5)}
-button,input{font:inherit}
-button{touch-action:manipulation}
-.page{width:min(980px,calc(100% - 22px));margin:0 auto;padding:28px 0 72px}
-.quiz-card{background:var(--white);border:2px solid var(--black);border-radius:28px;overflow:hidden;box-shadow:10px 10px 0 rgba(31,90,69,.18)}
-.welcome-head{background:var(--green);color:var(--white);padding:32px 34px 28px;position:relative}
-.welcome-head::after{content:"";position:absolute;left:34px;right:34px;bottom:-10px;height:20px;background:var(--beige);border:2px solid var(--black);border-radius:999px}
-.eyebrow{font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-weight:900;opacity:.9}
-h1{margin:9px 0 8px;font-family:Georgia,serif;font-size:clamp(38px,7vw,64px);line-height:.98}
-.lead{margin:0;max-width:680px;line-height:1.6;font-size:15px}
-.main{padding:34px}
-.name-box{background:var(--beige);border:2px solid var(--black);border-radius:20px;padding:18px 18px 20px;margin-bottom:20px}
-label{display:block;font-weight:900;font-size:13px;letter-spacing:.08em;margin-bottom:8px}
-input[type=text],input[type=password]{width:100%;border:2px solid var(--black);border-radius:12px;padding:13px 14px;background:var(--white);color:var(--black);outline:none}
-input:focus{box-shadow:4px 4px 0 var(--green-soft);border-color:var(--green)}
-.rules{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:18px 0 24px}
-.rule{background:var(--white);border:2px solid var(--black);border-radius:18px;padding:15px;line-height:1.45;font-size:13px}
-.rule b{display:block;color:var(--green);margin-bottom:5px}
-.btn{border:2px solid var(--black);border-radius:999px;padding:12px 18px;font-weight:900;cursor:pointer;box-shadow:4px 4px 0 var(--black);transition:.12s}
-.btn:active{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--black)}
-.btn-green{background:var(--green);color:var(--white)}
-.btn-beige{background:var(--beige);color:var(--black)}
-.quiz{display:none}
-.quiz-top{background:var(--green);color:var(--white);padding:22px 26px;border-bottom:2px solid var(--black)}
-.quiz-top-row{display:flex;justify-content:space-between;gap:12px;align-items:center}
-.student-name{font-family:Georgia,serif;font-size:28px;font-weight:700}
-.meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
-.pill{border:2px solid var(--white);border-radius:999px;padding:7px 10px;font-size:12px;font-weight:900}
-.quiz-body{padding:28px 30px 32px}
-.progress{height:12px;background:var(--beige);border:2px solid var(--black);border-radius:999px;overflow:hidden;margin-bottom:22px}
-.progress div{height:100%;background:var(--green-2);width:0}
-.question-label{color:var(--green);font-weight:900;letter-spacing:.08em;text-transform:uppercase;font-size:12px}
-.question{font-family:Georgia,serif;font-size:clamp(22px,4vw,31px);line-height:1.35;margin:9px 0 18px}
-.passage{display:none;background:var(--beige);border:2px solid var(--black);border-radius:18px;padding:16px 18px;margin-bottom:20px;line-height:1.6;font-family:Georgia,serif}
-.choices{display:grid;gap:11px}
-.choice{width:100%;text-align:left;border:2px solid var(--black);background:var(--white);color:var(--black);border-radius:18px;padding:15px 16px;font-weight:700;cursor:pointer}
-.choice:hover{background:var(--green-soft)}
-.choice.selected{background:var(--green);color:var(--white);box-shadow:4px 4px 0 var(--black)}
-.nav{display:flex;justify-content:flex-end;gap:12px;margin-top:24px}
-.done{display:none;text-align:center;padding:34px 8px}
-.done-badge{width:70px;height:70px;margin:0 auto 16px;border-radius:50%;background:var(--green);color:var(--white);border:2px solid var(--black);display:grid;place-items:center;font-size:34px;font-weight:900;box-shadow:5px 5px 0 var(--black)}
-.done h2{font-family:Georgia,serif;font-size:36px;margin:0 0 8px}
-.done p{color:var(--muted);line-height:1.55}
-.attention-wrap{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:70;display:none}
-.attention-btn{min-width:150px;background:var(--green);color:var(--white);border:3px solid var(--black);border-radius:999px;padding:13px 20px;font-weight:900;box-shadow:5px 5px 0 var(--black);animation:pulse .55s infinite alternate;cursor:pointer}
-@keyframes pulse{from{transform:scale(1)}to{transform:scale(1.08)}}
-.admin-dot{position:fixed;right:16px;bottom:16px;width:34px;height:34px;border-radius:50%;background:var(--black);border:4px solid var(--beige);cursor:pointer;z-index:80}
-.overlay{display:none;position:fixed;inset:0;background:rgba(21,26,24,.72);align-items:center;justify-content:center;padding:18px;z-index:100}
-.modal{width:min(520px,100%);background:var(--white);border:2px solid var(--black);border-radius:24px;padding:24px;box-shadow:8px 8px 0 var(--green)}
-.modal h2{font-family:Georgia,serif;font-size:30px;margin:0 0 8px}
-.modal p{line-height:1.55;color:var(--muted)}
-.modal-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:16px}
-.admin-panel{display:none;position:fixed;inset:0;background:var(--beige);z-index:90;overflow:auto;padding:24px}
-.admin-wrap{width:min(1200px,100%);margin:auto}
-.admin-head{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-bottom:18px}
-.admin-head h2{font-family:Georgia,serif;font-size:40px;margin:0}
-.table-wrap{overflow:auto;background:var(--white);border:2px solid var(--black);border-radius:20px;box-shadow:8px 8px 0 rgba(31,90,69,.18)}
-table{width:100%;border-collapse:collapse;font-size:13px}
-th,td{padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:top;text-align:left}
-th{background:var(--green);color:var(--white);position:sticky;top:0}
-.answer-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:7px;margin-top:10px}
-.answer-chip{background:var(--beige);border:1px solid var(--black);border-radius:9px;padding:7px;text-align:center;font-size:12px}
-.timer-danger{background:var(--black)!important;color:var(--white)!important}
-.note{font-size:12px;color:var(--muted);margin-top:14px;line-height:1.5}
-
-.reset-flash{
-  display:none;
-  position:fixed;
-  inset:0;
-  z-index:999;
-  pointer-events:none;
-  background:rgba(170,0,0,.38);
-  animation:redFlash .22s linear infinite alternate;
+*{box-sizing:border-box;font-family:Inter,Segoe UI,Arial,sans-serif}
+body{
+ margin:0;min-height:100vh;color:white;
+ display:flex;justify-content:center;align-items:center;
+ background:
+ radial-gradient(circle at 10% 10%,#2563eb55,transparent 30%),
+ radial-gradient(circle at 90% 90%,#9333ea55,transparent 30%),
+ var(--bg);
 }
-.reset-flash::after{
-  content:"RESETTING...";
-  position:absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  color:var(--white);
-  background:rgba(0,0,0,.72);
-  border:3px solid var(--white);
-  border-radius:18px;
-  padding:16px 24px;
-  font-weight:900;
-  letter-spacing:.12em;
-  font-size:clamp(22px,5vw,42px);
+.container{width:min(94%,950px)}
+.card{
+ background:var(--glass);
+ border:1px solid var(--border);
+ backdrop-filter:blur(25px);
+ border-radius:32px;
+ padding:40px;
+ box-shadow:0 25px 80px #0008;
 }
-@keyframes redFlash{
-  from{opacity:.28}
-  to{opacity:.92}
+.logo{
+ text-align:center;font-size:60px;
 }
-@media(max-width:650px){
- .main,.quiz-body{padding-left:17px;padding-right:17px}
- .welcome-head{padding-left:20px;padding-right:20px}
- .welcome-head::after{left:20px;right:20px}
- .rules{grid-template-columns:1fr}
- .quiz-top-row{align-items:flex-start;flex-direction:column}
- .answer-grid{grid-template-columns:repeat(4,1fr)}
- .attention-btn{min-width:132px;padding:11px 15px}
+h1{
+ text-align:center;
+ font-size:42px;
+ background:linear-gradient(90deg,var(--blue),var(--gold));
+ color:transparent;
+ -webkit-background-clip:text;
+}
+.subtitle{text-align:center;color:#cbd5e1}
+input,textarea{
+ width:100%;margin-top:18px;padding:16px;
+ border-radius:16px;border:1px solid #ffffff33;
+ background:#ffffff15;color:white;font-size:16px;
+}
+textarea{height:180px;resize:none}
+button{
+ width:100%;margin-top:18px;padding:16px;
+ border:0;border-radius:16px;
+ background:linear-gradient(90deg,#2563eb,#06b6d4);
+ color:white;font-weight:700;font-size:16px;
+ cursor:pointer;
+}
+button:hover{transform:translateY(-2px)}
+.hidden{display:none}
+.badge{
+ display:inline-block;background:#2563eb;
+ padding:8px 14px;border-radius:30px;
+ font-size:13px;
+}
+.question{
+ margin-top:20px;padding:28px;
+ background:#ffffff12;border-radius:22px;
+ font-size:22px;line-height:1.5;
+}
+.status{text-align:center;color:#4ade80;margin-top:15px}
+.admin-btn{
+ position:fixed;right:20px;bottom:20px;
+ width:45px;height:45px;border-radius:50%;
+ display:flex;align-items:center;justify-content:center;
+ background:#ffffff22;
+ backdrop-filter:blur(15px);
+ cursor:pointer;
+ opacity:.55;
+}
+.admin-btn:hover{opacity:1}
+.admin-card{
+ background:white;color:#111;padding:20px;
+ border-radius:15px;margin:15px;
+}
+@media(max-width:600px){
+.card{padding:25px}
+h1{font-size:32px}
+.question{font-size:18px}
 }
 </style>
 </head>
 <body>
-<div class="reset-flash" id="resetFlash"></div>
-<div class="page">
-<section class="quiz-card" id="startScreen">
-  <div class="welcome-head">
-    <div class="eyebrow">Welcome to your assessment</div>
-    <h1>Group 5 and 6 QUIZ</h1>
-    <p class="lead">Take your time reading each question, stay focused, and keep this page open until your response is submitted.</p>
-  </div>
-  <div class="main">
-    <div class="name-box">
-      <label for="studentName">NAME:</label>
-      <input id="studentName" type="text" autocomplete="off" placeholder="Enter your full name">
-    </div>
-    <div class="rules">
-      <div class="rule"><b>30 seconds per question</b>If time reaches zero, that question is marked wrong and the quiz automatically moves to the next question.</div>
-      <div class="rule"><b>Stay active</b>A green “I’m here” button appears every 3 seconds. Press it before it disappears.</div>
-      <div class="rule"><b>5 violations</b>Tab/app switching and blocked actions count toward the violation limit.</div>
-      <div class="rule"><b>Private results</b>Students will not see the answer key or score after submission.</div>
-    </div>
-    <button class="btn btn-green" id="startBtn">Start the quiz</button>
-    <div class="note">Maximum score: 46 points. Questions 18–20 and 38–40 are worth 2 points each; all others are worth 1 point.</div>
-  </div>
-</section>
 
-<section class="quiz-card quiz" id="quizScreen">
-  <div class="quiz-top">
-    <div class="quiz-top-row">
-      <div class="student-name" id="studentDisplay"></div>
-      <div class="meta">
-        <span class="pill">Time: <span id="questionTimer">30</span>s</span>
-        <span class="pill">Violations: <span id="violations">0</span>/5</span>
-        <span class="pill">Total: 46 pts</span>
-      </div>
-    </div>
-  </div>
-  <div class="quiz-body">
-    <div class="progress"><div id="progressBar"></div></div>
-    <div class="question-label" id="qnum"></div>
-    <div class="passage" id="passage"></div>
-    <div class="question" id="qtext"></div>
-    <div class="choices" id="choices"></div>
-    <div class="nav">
-      <button class="btn btn-green" id="nextBtn">Next</button>
-    </div>
-    <div class="done" id="done">
-      <div class="done-badge">✓</div>
-      <h2>Response submitted</h2>
-      <p>Your answers have been recorded. Son......67</p>
-    </div>
-  </div>
-</section>
+<div class="container">
+
+<div class="card" id="home">
+<div class="logo">⚔️</div>
+<h1>Research Defense</h1>
+<h2 style="text-align:center">"Ballad is Watching"</h2>
+<p class="subtitle">Research Defense Simulation System</p>
+
+<input id="participant" placeholder="Enter your full name">
+
+<button onclick="start()">Begin Defense</button>
 </div>
 
-<div class="attention-wrap" id="attentionWrap">
-  <button class="attention-btn" id="attentionBtn">I'M HERE</button>
+
+<div class="card hidden" id="game">
+
+<span class="badge" id="counter"></span>
+<p id="category"></p>
+
+<div class="question" id="question"></div>
+
+<textarea id="response" placeholder="Write your defense answer here..."></textarea>
+
+<button onclick="submitAnswer()">Submit Answer</button>
+
+<button class="hidden" id="next" onclick="nextQuestion()">Next Question →</button>
+
+<div class="status hidden" id="saved">✓ Response Saved</div>
+
 </div>
 
-<button class="admin-dot" id="adminDot" aria-label="Admin access"></button>
-
-<div class="overlay" id="adminLogin">
-  <div class="modal">
-    <h2>Admin access</h2>
-    <p>Son.....</p>
-    <input id="adminPassword" type="password" placeholder="Password">
-    <div class="modal-actions">
-      <button class="btn btn-beige" id="cancelAdmin">Cancel</button>
-      <button class="btn btn-green" id="enterAdmin">Open</button>
-    </div>
-  </div>
 </div>
 
-<div class="overlay" id="warningOverlay">
-  <div class="modal">
-    <h2>Quiz warning</h2>
-    <p id="warningText"></p>
-    <div class="modal-actions"><button class="btn btn-green" id="warningOk">Return</button></div>
-  </div>
-</div>
 
-<div class="overlay" id="resetOverlay">
-  <div class="modal">
-    <h2>Attempt reset</h2>
-    <p id="resetReason">Your quiz progress was reset.</p>
-    <div class="modal-actions"><button class="btn btn-green" id="resetOk">Restart</button></div>
-  </div>
-</div>
-
-<section class="admin-panel" id="adminPanel">
-  <div class="admin-wrap">
-    <div class="admin-head">
-      <div>
-        <div class="eyebrow" style="color:var(--green)">Private admin view</div>
-        <h2>Respondents</h2>
-      </div>
-      <button class="btn btn-beige" id="closeAdmin">Close</button>
-    </div>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Name</th><th>Score</th><th>Violations</th><th>Submitted</th><th>Answers</th></tr></thead>
-        <tbody id="resultsBody"></tbody>
-      </table>
-    </div>
-  </div>
-</section>
-
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
-import { getFirestore, collection, addDoc, getDocs, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
-
-const QUESTIONS = [{"q": "A social worker organizes a support group for parents who are struggling with parenting challenges. This is an example of what level of intervention?", "c": ["Micro", "Mezzo", "Macro", "Individual"]}, {"q": "A social worker advocates for a new government policy to improve access to healthcare services among poor communities. This is an example of:", "c": ["Micro intervention", "Mezzo intervention", "Macro intervention", "Individual assessment"]}, {"q": "Which statement best describes mezzo social work?", "c": ["It focuses only on one person's emotional concerns.", "It focuses on groups, organizations, and small communities.", "It focuses only on government policies.", "It avoids community involvement."]}, {"q": "Which situation BEST represents micro social work?", "c": ["Creating a national poverty reduction policy", "Organizing a community disaster response program", "Counseling a client experiencing personal difficulties", "Establishing a nationwide social welfare system"]}, {"q": "The main goal of macro social work is to:", "c": ["Provide individual counseling only", "Change larger social systems and conditions", "Solve personal relationship problems", "Provide short-term emotional support"]}, {"q": "In social work, a need refers to a condition, resource, support, or change that helps improve a person's:", "c": ["Wealth only", "Well-being and functioning", "Social status only", "Personal achievements only"]}, {"q": "A community lacks transportation services, making it difficult for residents to access schools and hospitals. This is an example of:", "c": ["Individual need", "Family need", "Community need", "Personal need"]}, {"q": "Poverty caused by unequal opportunities, discrimination, and limited access to resources is considered a:", "c": ["Physiological need", "Structural/societal need", "Individual need", "Family need"]}, {"q": "According to Maslow’s Hierarchy of Needs, which need must generally be addressed first?", "c": ["Esteem needs", "Self-actualization needs", "Physiological needs", "Belongingness needs"]}, {"q": "A person seeking acceptance, friendship, and family connection is trying to fulfill which need?", "c": ["Safety need", "Belongingness and love need", "Esteem need", "Self-actualization need"]}, {"q": "During assessment, the social worker primarily aims to identify the client's:", "c": ["Needs, problems, strengths, and resources", "Mistakes and weaknesses only", "Financial status only", "Social position only"]}, {"q": "A social worker and client create goals and decide strategies to solve a problem. This stage is called:", "c": ["Planning", "Evaluation", "Termination", "Assessment"]}, {"q": "Which stage involves applying strategies such as counseling, referrals, and community programs?", "c": ["Engagement", "Intervention", "Assessment", "Termination"]}, {"q": "A social worker checks whether the client's situation improved after receiving assistance. This process is called:", "c": ["Planning", "Engagement", "Evaluation", "Assessment"]}, {"q": "Why is client participation important in the social work process?", "c": ["It allows clients to actively participate in solving their own problems.", "It removes the responsibility of the social worker.", "It prevents decision-making.", "It eliminates the need for assessment."]}, {"q": "A social worker first gathers information about a client's family situation, challenges, and available resources. Which step is this?", "c": ["Assessment", "Termination", "Intervention", "Evaluation"]}, {"q": "Which social work principle emphasizes allowing clients to make choices and participate in decisions affecting their lives?", "c": ["Self-determination", "Confidentiality", "Acceptance", "Individualization"]}, {"q": "A student saves ₱5,000 in a bank with an annual simple interest rate of 4% for 3 years. How much interest will the student earn? (2 points)", "c": ["₱400", "₱500", "₱600", "₱700"]}, {"q": "Which part of the cell controls all activities of the cell and contains the genetic material (DNA)? (2 points)", "c": ["Cell membrane", "Cytoplasm", "Nucleus", "Mitochondria"]}, {"q": "Solve the quadratic equation (2 points): x² − 5x + 6 = 0", "c": ["x = 1 and x = 6", "x = 2 and x = 3", "x = -2 and x = -3", "x = 3 and x = 5"]}, {"q": "Which social work setting involves for-profit businesses or corporate companies hiring social workers to support their employees or run community projects?", "c": ["Public Sector Setting", "Private Sector Setting", "Non-profit Organization Setting", "Civil Society Setting"]}, {"q": "Which area of social work focuses on gathering data, facts, and statistics to understand social problems and evaluate whether programs are actually effective?", "c": ["Social Work Policy", "Social Action", "Social Work Research", "Community Organizing"]}, {"q": "Which social work concept involves campaigning and fighting for large-scale changes in laws, policies, or public awareness to achieve justice?", "c": ["Community Organization", "Social Case Work", "Social Action", "Social Group Work"]}, {"q": "A social worker meets weekly with a family to counsel them through a crisis and help them access immediate food assistance. This face-to-face intervention directly addresses the clients' immediate challenges. What classification best describes the method being used in this scenario?", "c": ["Secondary Methods", "Macro Practice", "Indirect Methods", "Primary Methods"]}, {"q": "During a typhoon in Metro Manila, many families lost their homes and need food, temporary shelter, and cash assistance. A social worker from DSWD goes to evacuation centers to assess needs, process 4Ps and AICS applications, and coordinate relief distribution. Which 'Setting in Social Work' best describes where this social worker is employed?", "c": ["Hospital Setting", "School Setting", "Government Setting", "Private Agency Setting"]}, {"q": "In a barangay in Quezon City, there is a high rate of teenage pregnancy, lack of health centers, and many out-of-school youth. The social worker meets with barangay officials, parents, teachers, and youth leaders to identify problems and create programs for health education, livelihood, and scholarships for the whole barangay. What is the MAIN focus of the social worker's effort in this situation?", "c": ["To help one student with personal problems", "To help a small group build better relationships", "To address the social, educational, and health needs of the community", "To provide direct counseling to teenage mothers only"]}, {"q": "Ana is a licensed social worker. She works at the Department of Social Welfare and Development. Her daily tasks include implementing child protection programs, assisting senior citizens with their social pension, and monitoring beneficiaries of government aid. What is the main role of Ana as a social worker in the GOVERNMENT setting?", "c": ["To conduct therapy sessions for one client only", "To help meet people's basic needs through government programs and services", "To organize community members to solve their own problems", "To run a private counseling center"]}, {"q": "What is the most appropriate definition of civil society?", "c": ["Government institutions that enforce the law.", "Voluntary organizations and citizen actions that are independent of the state and the market.", "Private businesses that provide products and services.", "Political parties seeking to gain positions in government."]}, {"q": "Which of the following is the most important characteristic of civil society?", "c": ["Mandatory membership", "Direct power to enforce laws.", "Voluntary participation and collective action.", "Primary goal of making a profit."]}, {"q": "Which is the clearest example of civil society?", "c": ["An NGO that advocates for the rights of indigenous peoples.", "A government agency that provides public service.", "A company that sells food.", "A court that decides on legal cases."]}, {"q": "Why is civil society important in a democratic society?", "c": ["Because it can replace the government.", "Because it provides a way for citizens to participate, express themselves, and organize.", "Because it holds all political power.", "Because it is the primary law-making body."]}, {"q": "What is the primary purpose of a social worker in a school setting?", "c": ["To teach academic subjects.", "To help students overcome personal or family problems that affect their education.", "To manage the school's finances.", "To organize sports competitions."]}, {"q": "Which of the following is an example of a school setting for social work?", "c": ["Public market.", "Guidance Office", "Police station", "Shopping mall"]}, {"q": "What is Social Case Work?", "c": ["Helping a community solve its problems", "Helping a group of people share their experiences", "Helping an individual or family solve personal and emotional problems through a one-on-one approach", "Conducting research about social problems."]}, {"q": "What is the main goal of community organizing in a local neighborhood?", "c": ["To tell residents what rules to follow", "To help residents unite and solve problems together", "To build private commercial stores", "To replace local government officials entirely"]}, {"q": "Which of the following best describes the process of 'Community Organization'?", "c": ["Assigning individual tasks to residents from an outside corporate office", "Mobilizing an entire neighborhood to work together, look for resources, and solve local problems", "Hiring an external security team to enforce strict rules within a residential area", "Providing financial loans to individual business owners without community involvement"]}, {"q": "What is the main role of a social worker in these community settings?", "c": ["To guide and support people as they help themselves", "To act as the boss of the neighborhood", "To make all decisions for the residents", "To provide funding without ever visiting the area"]}, {"q": "According to the passage, what color does the Arctic fox's fur turn during the summer season?", "c": ["Pure white", "Brownish-gray", "Dark black", "Spotted yellow"], "passage": "The Arctic fox, a small predator native to the Arctic regions, is known for its incredible adaptability to cold environments. One of its most remarkable features is its fur, which changes color with the seasons for camouflage; it turns white during the winter to blend in with the snow and brownish-gray in the summer to match the tundra. Another notable adaptation is its ability to reduce its metabolic rate in extreme cold, conserving energy and minimizing food requirements. This ability is crucial for survival during the harsh winter months when food is scarce."}, {"q": "Based on the passage, what is the primary benefit of the Arctic fox lowering its metabolic rate?", "c": ["It helps the fox hunt small prey more efficiently.", "It allows the fox to change its fur color faster between seasons.", "It conserves energy and lowers the amount of food needed to survive.", "It increases its core body temperature to fight extreme cold."], "passage": "The Arctic fox, a small predator native to the Arctic regions, is known for its incredible adaptability to cold environments. One of its most remarkable features is its fur, which changes color with the seasons for camouflage; it turns white during the winter to blend in with the snow and brownish-gray in the summer to match the tundra. Another notable adaptation is its ability to reduce its metabolic rate in extreme cold, conserving energy and minimizing food requirements. This ability is crucial for survival during the harsh winter months when food is scarce."}, {"q": "According to the passage, where is the Arctic fox naturally found?", "c": ["In tropical rainforests worldwide.", "In mountainous desert areas.", "Native to the Arctic regions.", "In heavily forested swamp environments."], "passage": "The Arctic fox, a small predator native to the Arctic regions, is known for its incredible adaptability to cold environments. One of its most remarkable features is its fur, which changes color with the seasons for camouflage; it turns white during the winter to blend in with the snow and brownish-gray in the summer to match the tundra. Another notable adaptation is its ability to reduce its metabolic rate in extreme cold, conserving energy and minimizing food requirements. This ability is crucial for survival during the harsh winter months when food is scarce."}];
-const ANSWER_KEY = [1, 2, 1, 2, 1, 1, 2, 1, 2, 1, 0, 0, 1, 2, 0, 0, 0, 2, 2, 1, 1, 2, 1, 1, 2, 0, 1, 1, 1, 0, 1, 1, 2, 2, 3, 2, 2, 1, 2, 2];
-const WEIGHTS = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2];
-
-const MAX_VIOLATIONS = 5;
-const ADMIN_PASSWORD = "ssjdhasjdhasjdhdkjsdhasuwoeiquoewqueqweqweqwe";
-const QUESTION_SECONDS = 30;
-const ATTENTION_INTERVAL = 3000;
-const ATTENTION_WINDOW = 3000;
+<div class="admin-btn" onclick="adminLogin()">🔒</div>
 
 
-
-// ==========================================================
+<script>
 
 const firebaseConfig = {
     apiKey: "AIzaSyBIRD2jWCkb-lxD6mCAjMNU8zb-I0JHCFs",
@@ -257,298 +140,108 @@ const firebaseConfig = {
 };
 
 
-// ==========================================================
+const questions=[
+["Group 1: Research Rationale & Variables","Why did your study consider attitudes toward AI as a possible predictor of AI ethical awareness instead of treating ethical awareness as an independent characteristic of students?","Students’ cognitive beliefs, emotional responses, and behavioral tendencies toward AI may influence how they recognize, interpret, and evaluate ethical concerns related to AI."],
+["Group 1: Research Rationale & Variables","Your study separates attitudes toward AI and AI ethical awareness. Why is this distinction theoretically important?","Attitudes describe beliefs, feelings, and behavioral tendencies while ethical awareness focuses on recognizing autonomy, beneficence, and fairness."],
+["Group 1: Research Rationale & Variables","If a student is skeptical toward AI but demonstrates strong ethical awareness, how does this challenge the assumption that attitudes influence ethical awareness?","It does not necessarily challenge the framework because critical attitudes may still involve careful ethical evaluation."],
+["Group 1: Research Rationale & Variables","What consequence may occur if institutions encourage positive AI attitudes without strengthening ethical awareness?","Students may accept AI without understanding responsible use, human oversight, fairness, and ethical concerns."],
+["Group 2: Literature Review & Research Gap","Why is examining AI attitudes and ethical awareness in one predictive model a meaningful contribution?","It determines whether specific attitude dimensions explain variations in ethical awareness dimensions."],
+["Group 2: Literature Review & Research Gap","Why is behavioral attitude alone insufficient to determine ethical awareness?","Willingness to engage with AI does not guarantee understanding of ethical concerns."],
+["Group 2: Literature Review & Research Gap","Why is identifying the research gap necessary before conducting a predictive study?","It establishes what previous studies have not sufficiently explained."],
+["Group 2: Literature Review & Research Gap","If future research contradicts your expected relationship, how would you defend the value of your study?","Research tests relationships and unexpected findings can contribute new evidence."],
+["Group 3: Theoretical & Conceptual Framework","Why did your study adopt the Tripartite Model of Attitude even though the outcome is ethical awareness?","The model explains the predictor variable through cognition, affect, and behavior."],
+["Group 3: Theoretical & Conceptual Framework","Why measure cognition, affect, and behavior separately?","Attitude is multidimensional and each component may show different relationships."],
+["Group 3: Theoretical & Conceptual Framework","What misunderstanding may occur if prediction is interpreted as causation?","Prediction identifies statistical relationships, not cause-and-effect."],
+["Group 3: Theoretical & Conceptual Framework","If behavioral attitude predicts fairness while cognitive attitude does not, what does it imply?","Different attitude dimensions may relate differently to ethical dimensions."],
+["Group 4: Methodology & Measurement","Why is predictive-correlational design more appropriate than experimental design?","It examines naturally occurring relationships without manipulating variables."],
+["Group 4: Methodology & Measurement","How will you address socially desirable answers in self-report instruments?","Through confidentiality, proper administration, and acknowledging limitations."],
+["Group 4: Methodology & Measurement","Why analyze attitude dimensions as separate predictors?","To identify which specific dimensions contribute to ethical awareness prediction."],
+["Group 4: Methodology & Measurement","Why is construct distinction important between SATAI and AIEAS?","To ensure different concepts are measured."],
+["Group 4: Methodology & Measurement","Why Use Multiple Linear Regression?","To ensure different concepts are measured."],
+["Group 4: Methodology & Measurement","How is the study statistical treatment are appropriate for this study?","To ensure different concepts are measured."],
+["Group 5: Statistics, Interpretation & Defense","If regression shows significant prediction, what conclusion cannot be made?","You cannot conclude attitudes cause ethical awareness."],
+["Group 5: Statistics, Interpretation & Defense","If cognitive predicts autonomy but affective predicts fairness, what does this suggest?","Different attitude dimensions may influence different ethical dimensions."],
+["Group 5: Statistics, Interpretation & Defense","How should a significant but weak correlation be interpreted?","A relationship exists but explains limited variation."],
+["Group 5: Statistics, Interpretation & Defense","If no attitude dimensions predict ethical awareness, what explanations can be discussed?","Other factors, sample limitations, or measurement issues may influence ethical awareness."]
+];
 
-let app=null, db=null, firebaseReady=false;
-try {
-  if (firebaseConfig.apiKey && !firebaseConfig.apiKey.startsWith("PASTE_")) {
-    app = initializeApp(firebaseConfig);
-    db = getFirestore(app);
-    firebaseReady = true;
-  }
-} catch (err) {
-  console.error(err);
+let name="";
+let index=0;
+let used=[];
+
+function start(){
+name=document.getElementById("participant").value.trim();
+if(!name){alert("Enter your name");return}
+home.classList.add("hidden");
+game.classList.remove("hidden");
+nextQuestion();
 }
 
-let current=0, answers=Array(QUESTIONS.length).fill(null), timedOut=Array(QUESTIONS.length).fill(false), violations=Number(sessionStorage.getItem("g56_violations")||0), active=false;
-let questionTimerId=null, attentionIntervalId=null, attentionDeadlineId=null, secondsLeft=QUESTION_SECONDS;
-let attentionPending=false;
+function nextQuestion(){
+if(used.length===questions.length){
+alert("All questions completed!");
+return;
+}
+let i;
+do{i=Math.floor(Math.random()*questions.length)}
+while(used.includes(i));
+used.push(i);
+index=i;
 
-const $=id=>document.getElementById(id);
-
-function render(){
-  const item=QUESTIONS[current];
-  $("qnum").textContent=`Question ${current+1} of ${QUESTIONS.length} • ${WEIGHTS[current]} point${WEIGHTS[current]===1?"":"s"}`;
-  $("qtext").textContent=item.q;
-  $("progressBar").style.width=`${((current+1)/QUESTIONS.length)*100}%`;
-  if(item.passage){$("passage").textContent=item.passage;$("passage").style.display="block";}
-  else $("passage").style.display="none";
-  $("choices").innerHTML="";
-  item.c.forEach((txt,i)=>{
-    const b=document.createElement("button");
-    b.className="choice"+(answers[current]===i?" selected":"");
-    b.textContent=String.fromCharCode(65+i)+". "+txt;
-    b.onclick=()=>{ if(!timedOut[current]){answers[current]=i;renderWithoutTimerReset()} };
-    $("choices").appendChild(b);
-  });
-  $("nextBtn").textContent=current===QUESTIONS.length-1?"Submit quiz":"Next";
-  startQuestionTimer();
+category.innerText=questions[i][0];
+question.innerText=questions[i][1];
+counter.innerText="Question "+used.length+" / 20";
+response.value="";
+next.classList.add("hidden");
+saved.classList.add("hidden");
 }
 
-function renderWithoutTimerReset(){
-  const item=QUESTIONS[current];
-  $("choices").innerHTML="";
-  item.c.forEach((txt,i)=>{
-    const b=document.createElement("button");
-    b.className="choice"+(answers[current]===i?" selected":"");
-    b.textContent=String.fromCharCode(65+i)+". "+txt;
-    b.onclick=()=>{ if(!timedOut[current]){answers[current]=i;renderWithoutTimerReset()} };
-    $("choices").appendChild(b);
-  });
+function submitAnswer(){
+if(!response.value.trim()){
+alert("Please write your answer.");
+return;
 }
 
-function startQuestionTimer(){
-  clearInterval(questionTimerId);
-  secondsLeft=QUESTION_SECONDS;
-  $("questionTimer").textContent=secondsLeft;
-  $("questionTimer").parentElement.classList.remove("timer-danger");
-  questionTimerId=setInterval(()=>{
-    if(!active)return;
-    secondsLeft--;
-    $("questionTimer").textContent=secondsLeft;
-    if(secondsLeft<=5)$("questionTimer").parentElement.classList.add("timer-danger");
-    if(secondsLeft<=0){
-      clearInterval(questionTimerId);
-      handleQuestionTimeout();
-    }
-  },1000);
-}
-
-function handleQuestionTimeout(){
-  if(!active)return;
-  // Force this item wrong regardless of any previously selected answer.
-  answers[current] = -1;
-  timedOut[current] = true;
-
-  if(current >= QUESTIONS.length - 1){
-    submitQuiz();
-  } else {
-    current++;
-    render();
-  }
-}
-
-function startAttentionChecks(){
-  clearInterval(attentionIntervalId);
-  clearTimeout(attentionDeadlineId);
-  $("attentionWrap").style.display="none";
-  attentionPending=false;
-  attentionIntervalId=setInterval(showAttentionCheck,ATTENTION_INTERVAL);
-}
-
-function showAttentionCheck(){
-  if(!active || attentionPending)return;
-  attentionPending=true;
-  $("attentionWrap").style.display="block";
-  clearTimeout(attentionDeadlineId);
-  attentionDeadlineId=setTimeout(()=>{
-    if(active && attentionPending){
-      attentionPending=false;
-      $("attentionWrap").style.display="none";
-      hardReset("The attention-check button was not pressed in time. Your progress has been reset.");
-    }
-  },ATTENTION_WINDOW);
-}
-
-$("attentionBtn").onclick=()=>{
-  if(!active || !attentionPending)return;
-  attentionPending=false;
-  clearTimeout(attentionDeadlineId);
-  $("attentionWrap").style.display="none";
-};
-
-function startQuiz(preserveViolations=false){
-  const name=$("studentName").value.trim();
-  if(!name){alert("Please enter your name first.");return}
-  current=0;
-  answers=Array(QUESTIONS.length).fill(null);
-  timedOut=Array(QUESTIONS.length).fill(false);
-  if(!preserveViolations){
-    violations=0;
-    sessionStorage.setItem("g56_violations","0");
-  }
-  active=true;
-  $("violations").textContent=String(violations);
-  $("studentDisplay").textContent=name;
-  $("startScreen").style.display="none";
-  $("quizScreen").style.display="block";
-  $("done").style.display="none";
-  $("qnum").style.display="block";$("qtext").style.display="block";$("choices").style.display="grid";
-  $("nextBtn").style.display="inline-block";
-  $("progressBar").parentElement.style.display="block";
-  startAttentionChecks();
-  render();
-}
-
-function recordViolation(reason){
-  if(!active)return;
-  violations++;
-  sessionStorage.setItem("g56_violations", String(violations));
-  $("violations").textContent=violations;
-  if(violations>=MAX_VIOLATIONS){
-    hardReset("You reached 5 security violations. Your entire attempt has been reset.");
-  }else{
-    $("warningText").textContent=reason+" This is violation "+violations+" of 5.";
-    $("warningOverlay").style.display="flex";
-  }
-}
-
-function hardReset(reason){
-  if(!active)return;
-  active=false;
-  clearInterval(questionTimerId);
-  clearInterval(attentionIntervalId);
-  clearTimeout(attentionDeadlineId);
-  attentionPending=false;
-  $("attentionWrap").style.display="none";
-
-  const flash = $("resetFlash");
-  flash.style.display = "block";
-
-  setTimeout(() => {
-    flash.style.display = "none";
-    answers=Array(QUESTIONS.length).fill(null);
-    timedOut=Array(QUESTIONS.length).fill(false);
-    current=0;
-    $("resetReason").textContent=reason;
-    $("resetOverlay").style.display="flex";
-  }, 1200);
-}
-
-async function submitQuiz(){
-  // unanswered non-timeout items are not allowed on manual submit
-  if(answers.some(v=>v===null)){
-    alert("Please answer every question before submitting.");
-    return;
-  }
-
-  let score=0;
-  ANSWER_KEY.forEach((key,i)=>{if(answers[i]===key)score+=WEIGHTS[i]});
-
-  const answerLetters = answers.map(v => v === -1 ? "TIMEOUT/WRONG" : String.fromCharCode(65+v));
-
-  const record={
-    name:$("studentName").value.trim(),
-    score,
-    maxScore:46,
-    violations,
-    answers:answerLetters,
-    timedOutQuestions: timedOut.map((v,i)=>v ? i+1 : null).filter(Boolean),
-    submittedLocal:new Date().toLocaleString(),
-    submittedAt: serverTimestamp()
-  };
-
-  active=false;
-  clearInterval(questionTimerId);
-  clearInterval(attentionIntervalId);
-  clearTimeout(attentionDeadlineId);
-  $("attentionWrap").style.display="none";
-
-  if(firebaseReady){
-    try {
-      await addDoc(collection(db,"responses"), record);
-    } catch(err) {
-      console.error(err);
-      alert("Your quiz finished, but the Firebase submission failed. Please inform the teacher.");
-    }
-  } else {
-    // Fallback so the prototype still records something locally before Firebase config is inserted.
-    const localRows=JSON.parse(localStorage.getItem("g56_results")||"[]");
-    const localRecord={...record,submittedAt:null};
-    localRows.push(localRecord);
-    localStorage.setItem("g56_results",JSON.stringify(localRows));
-  }
-
-  sessionStorage.setItem("g56_violations","0");
-  $("qnum").style.display="none";$("qtext").style.display="none";$("passage").style.display="none";
-  $("choices").style.display="none";$("nextBtn").style.display="none";
-  $("progressBar").parentElement.style.display="none";$("done").style.display="block";
-}
-
-async function showResults(){
-  $("resultsBody").innerHTML='<tr><td colspan="5">Loading responses...</td></tr>';
-  let rows=[];
-
-  if(firebaseReady){
-    try {
-      const snap=await getDocs(query(collection(db,"responses"),orderBy("submittedAt","desc")));
-      rows=snap.docs.map(d=>d.data());
-    } catch(err) {
-      console.error(err);
-      $("resultsBody").innerHTML='<tr><td colspan="5">Could not read Firebase responses. Check Authentication and Firestore rules.</td></tr>';
-      return;
-    }
-  } else {
-    rows=JSON.parse(localStorage.getItem("g56_results")||"[]").reverse();
-  }
-
-  $("resultsBody").innerHTML="";
-  if(!rows.length){
-    $("resultsBody").innerHTML='<tr><td colspan="5">No submissions found.</td></tr>';
-    return;
-  }
-
-  rows.forEach(r=>{
-    const tr=document.createElement("tr");
-    const ans=(r.answers||[]).map((a,i)=>`<span class="answer-chip">${i+1}: ${escapeHtml(a)}</span>`).join("");
-    const submitted=r.submittedLocal||"—";
-    tr.innerHTML=`<td><b>${escapeHtml(r.name)}</b></td><td>${r.score}/${r.maxScore||52}</td><td>${r.violations}</td><td>${escapeHtml(submitted)}</td><td><details><summary>View answers</summary><div class="answer-grid">${ans}</div></details></td>`;
-    $("resultsBody").appendChild(tr);
-  });
-}
-
-function escapeHtml(s){return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
-
-$("startBtn").onclick=startQuiz;
-$("nextBtn").onclick=()=>{
-  if(answers[current]===null){alert("Choose an answer before continuing.");return}
-  if(current===QUESTIONS.length-1)submitQuiz();
-  else{current++;render()}
-};
-$("warningOk").onclick=()=>$("warningOverlay").style.display="none";
-$("resetOk").onclick=()=>{$("resetOverlay").style.display="none";startQuiz(true)};
-
-document.addEventListener("visibilitychange",()=>{if(document.hidden&&active)recordViolation("You left or backgrounded the quiz page.")});
-document.addEventListener("contextmenu",e=>{if(active){e.preventDefault();recordViolation("Right-click is disabled.")}});
-["copy","cut","paste"].forEach(type=>document.addEventListener(type,e=>{if(active){e.preventDefault();recordViolation(type+" is disabled during the quiz.")}}));
-document.addEventListener("selectstart",e=>{if(active)e.preventDefault()});
-document.addEventListener("dragstart",e=>{if(active)e.preventDefault()});
-document.addEventListener("keydown",e=>{
-  if(!active)return;
-  const k=e.key.toLowerCase(),mod=e.ctrlKey||e.metaKey;
-  const blocked=(mod&&["c","x","v","a","s","p","u"].includes(k))||k==="f12"||(mod&&e.shiftKey&&["i","j","c"].includes(k));
-  if(blocked){e.preventDefault();recordViolation("A restricted keyboard shortcut was blocked.")}
+let answers=JSON.parse(localStorage.answers||"[]");
+answers.push({
+name:name,
+category:questions[index][0],
+question:questions[index][1],
+answer:response.value,
+expected:questions[index][2],
+date:new Date().toLocaleString()
 });
-window.addEventListener("beforeunload",e=>{if(active){e.preventDefault();e.returnValue=""}});
+localStorage.answers=JSON.stringify(answers);
 
-$("adminDot").onclick=()=>{$("adminPassword").value="";$("adminLogin").style.display="flex";setTimeout(()=>$("adminPassword").focus(),50)};
-$("cancelAdmin").onclick=()=>$("adminLogin").style.display="none";
+saved.classList.remove("hidden");
+next.classList.remove("hidden");
+}
 
-$("enterAdmin").onclick=async()=>{
-  const entered=$("adminPassword").value;
 
-  if(entered !== ADMIN_PASSWORD){
-    alert("Incorrect password.");
-    return;
-  }
+function adminLogin(){
+let p=prompt("Admin Password");
+if(p!=="2312312312315"){
+alert("Incorrect Password");
+return;
+}
 
-  $("adminLogin").style.display="none";
-  await showResults();
-  $("adminPanel").style.display="block";
-};
+let data=JSON.parse(localStorage.answers||"[]");
+let win=window.open();
+win.document.write("<h1>Admin Dashboard</h1>");
 
-$("adminPassword").addEventListener("keydown",e=>{if(e.key==="Enter")$("enterAdmin").click()});
-$("closeAdmin").onclick=()=>{$("adminPanel").style.display="none"};
+data.forEach(x=>{
+win.document.write(`
+<div class="admin-card">
+<b>${x.name}</b><br>
+Category: ${x.category}<br><br>
+<b>Question:</b><br>${x.question}<br><br>
+<b>Answer:</b><br>${x.answer}<br><br>
+<b>Expected:</b><br>${x.expected}
+</div>
+`);
+});
+}
+
 </script>
 </body>
 </html>
