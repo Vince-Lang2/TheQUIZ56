@@ -2,388 +2,288 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Research Defense | Ballad is Watching</title>
+
 <style>
-:root{
- --bg:#020617;
- --glass:rgba(255,255,255,.10);
- --border:rgba(255,255,255,.18);
- --blue:#38bdf8;
- --gold:#facc15;
-}
-*{box-sizing:border-box;font-family:Inter,Segoe UI,Arial,sans-serif}
+*{box-sizing:border-box;font-family:Inter,Arial,sans-serif}
 body{
- margin:0;min-height:100vh;color:white;
- display:flex;justify-content:center;align-items:center;
- background:
- radial-gradient(circle at 10% 10%,#2563eb55,transparent 30%),
- radial-gradient(circle at 90% 90%,#9333ea55,transparent 30%),
- var(--bg);
+margin:0;min-height:100vh;color:white;display:flex;
+align-items:center;justify-content:center;
+background:
+radial-gradient(circle at top,#2563eb55,transparent 35%),
+radial-gradient(circle at bottom,#9333ea55,transparent 35%),
+#020617;
 }
-.container{width:min(94%,950px)}
 .card{
- background:var(--glass);
- border:1px solid var(--border);
- backdrop-filter:blur(25px);
- border-radius:32px;
- padding:40px;
- box-shadow:0 25px 80px #0008;
-}
-.logo{
- text-align:center;font-size:60px;
-}
-h1{
- text-align:center;
- font-size:42px;
- background:linear-gradient(90deg,var(--blue),var(--gold));
- color:transparent;
- -webkit-background-clip:text;
-}
-.subtitle{text-align:center;color:#cbd5e1}
-input,textarea{
- width:100%;margin-top:18px;padding:16px;
- border-radius:16px;border:1px solid #ffffff33;
- background:#ffffff15;color:white;font-size:16px;
-}
-textarea{height:180px;resize:none}
-button{
- width:100%;margin-top:18px;padding:16px;
- border:0;border-radius:16px;
- background:linear-gradient(90deg,#2563eb,#06b6d4);
- color:white;font-weight:700;font-size:16px;
- cursor:pointer;
-}
-button:hover{transform:translateY(-2px)}
-.hidden{display:none}
-.badge{
- display:inline-block;background:#2563eb;
- padding:8px 14px;border-radius:30px;
- font-size:13px;
-}
-.question{
- margin-top:20px;padding:28px;
- background:#ffffff12;border-radius:22px;
- font-size:22px;line-height:1.5;
-}
-.status{text-align:center;color:#4ade80;margin-top:15px}
-.admin-btn{
- position:fixed;right:20px;bottom:20px;
- width:45px;height:45px;border-radius:50%;
- display:flex;align-items:center;justify-content:center;
- background:#ffffff22;
- backdrop-filter:blur(15px);
- cursor:pointer;
- opacity:.55;
-}
-.admin-btn:hover{opacity:1}
-.admin-card{
- background:white;color:#111;padding:20px;
- border-radius:15px;margin:15px;
-}
-@media(max-width:600px){
-.card{padding:25px}
-h1{font-size:32px}
-.question{font-size:18px}
-}
-
-/* ===== ADMIN UI ===== */
-#adminModal,#adminDashboard{
-display:none;
-position:fixed;
-inset:0;
-z-index:999;
-}
-
-#adminModal{
-background:rgba(2,6,23,.75);
-backdrop-filter:blur(15px);
-align-items:center;
-justify-content:center;
-}
-
-.admin-panel{
-width:min(92%,500px);
+width:min(95%,900px);
 padding:35px;
 border-radius:30px;
-background:rgba(255,255,255,.10);
-border:1px solid rgba(255,255,255,.2);
+background:rgba(255,255,255,.1);
 backdrop-filter:blur(25px);
-box-shadow:0 25px 80px #000;
+border:1px solid rgba(255,255,255,.2);
+box-shadow:0 25px 80px #0008;
+}
+h1{text-align:center;font-size:42px;background:linear-gradient(90deg,#38bdf8,#facc15);-webkit-background-clip:text;color:transparent}
+input,textarea{
+width:100%;padding:16px;margin-top:15px;
+border-radius:15px;background:#ffffff18;color:white;
+border:1px solid #ffffff33;
+}
+textarea{height:180px}
+button{
+width:100%;padding:16px;margin-top:15px;border:0;
+border-radius:15px;background:linear-gradient(90deg,#2563eb,#06b6d4);
+color:white;font-weight:bold;cursor:pointer
+}
+.hidden{display:none}
+
+.question{
+padding:25px;background:#ffffff12;border-radius:20px;
+font-size:22px;line-height:1.5;margin-top:20px
 }
 
-.admin-panel input{
-margin-top:15px;
+.admin-btn{
+position:fixed;right:20px;bottom:20px;
+width:45px;height:45px;border-radius:50%;
+background:#ffffff22;display:flex;align-items:center;
+justify-content:center;cursor:pointer;
 }
 
-.admin-dashboard{
-position:absolute;
-inset:0;
-overflow:auto;
-background:#020617;
-padding:30px;
+.modal,.dashboard{
+display:none;position:fixed;inset:0;
+background:#020617ee;padding:30px;overflow:auto;
+z-index:10;
 }
 
-.admin-card{
-background:white;
-color:#111827;
-padding:25px;
-border-radius:20px;
-margin:15px 0;
+.panel{
+max-width:900px;margin:auto;padding:30px;
+background:#ffffff12;border-radius:25px;
+backdrop-filter:blur(20px);
 }
 
-.admin-header{
-display:flex;
-justify-content:space-between;
-align-items:center;
+.response{
+background:white;color:#111;padding:20px;
+border-radius:15px;margin:15px 0;
 }
-
-.admin-small{
-width:auto;
-padding:10px 20px;
-}
-
 </style>
 </head>
+
 <body>
 
-<div class="container">
-
 <div class="card" id="home">
-<div class="logo">⚔️</div>
-<h1>Research Defense</h1>
+<h1>⚔️ Research Defense</h1>
 <h2 style="text-align:center">"Ballad is Watching"</h2>
-<p class="subtitle">Research Defense Simulation System</p>
+<p style="text-align:center">Research Defense System</p>
 
-<input id="participant" placeholder="Enter your full name">
-
+<input id="name" placeholder="Enter your name">
 <button onclick="start()">Begin Defense</button>
 </div>
 
 
 <div class="card hidden" id="game">
 
-<span class="badge" id="counter"></span>
-<p id="category"></p>
+<h3 id="counter"></h3>
+<p id="group"></p>
 
 <div class="question" id="question"></div>
 
-<textarea id="response" placeholder="Write your defense answer here..."></textarea>
+<textarea id="answer" placeholder="Write your defense answer"></textarea>
 
 <button onclick="submitAnswer()">Submit Answer</button>
 
-<button class="hidden" id="next" onclick="nextQuestion()">Next Question →</button>
+<button id="next" class="hidden" onclick="nextQuestion()">Next Question →</button>
 
-<div class="status hidden" id="saved">✓ Response Saved</div>
-
-</div>
+<p id="status"></p>
 
 </div>
-
 
 
 <div class="admin-btn" onclick="openAdmin()">🔒</div>
 
-<div id="adminModal">
-<div class="admin-panel">
-<h2>🔐 Admin Access</h2>
-<p>Ballad Control Panel</p>
-<input id="adminPass" type="password" placeholder="Enter password">
-<button onclick="loginAdmin()">Login</button>
-</div>
+
+<div class="modal" id="adminLogin">
+
+<div class="panel">
+<h2>🔐 Admin Login</h2>
+<input id="password" type="password" placeholder="Password">
+<button onclick="login()">Login</button>
 </div>
 
-<div id="adminDashboard">
-<div class="admin-dashboard">
-<div class="admin-header">
-<h1>⚔️ Ballad Admin Dashboard</h1>
-<button class="admin-small" onclick="logoutAdmin()">Logout</button>
-</div>
-<input id="searchAdmin" placeholder="Search responses..." onkeyup="filterAdmin()">
-<div id="adminResponses"></div>
-</div>
 </div>
 
 
+<div class="dashboard" id="dashboard">
 
-<script>
+<div class="panel">
+
+<h1>Admin Dashboard</h1>
+
+<button onclick="logout()">Logout</button>
+
+<div id="responses"></div>
+
+</div>
+
+</div>
+
+
+<script type="module">
+
+import { initializeApp } 
+from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+
+import {
+getFirestore,
+collection,
+addDoc,
+getDocs,
+serverTimestamp
+}
+from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
 
 const firebaseConfig = {
-    apiKey: "AIzaSyBIRD2jWCkb-lxD6mCAjMNU8zb-I0JHCFs",
-  authDomain: "quiz1-e0a41.firebaseapp.com",
-  projectId: "quiz1-e0a41",
-  storageBucket: "quiz1-e0a41.firebasestorage.app",
-  messagingSenderId: "245626532563",
-  appId: "1:245626532563:web:9f41796d2d3a3c89641a26",
-  measurementId: "G-0STRYLKRR2"
+apiKey:"AIzaSyBIRD2jWCkb-lxD6mCAjMNU8zb-I0JHCFs",
+authDomain:"quiz1-e0a41.firebaseapp.com",
+projectId:"quiz1-e0a41",
+storageBucket:"quiz1-e0a41.firebasestorage.app",
+messagingSenderId:"245626532563",
+appId:"1:245626532563:web:9f41796d2d3a3c89641a26",
+measurementId:"G-0STRYLKRR2"
 };
 
 
+const app=initializeApp(firebaseConfig);
+const db=getFirestore(app);
+
+
 const questions=[
-["Group 1: Research Rationale & Variables","Why did your study consider attitudes toward AI as a possible predictor of AI ethical awareness instead of treating ethical awareness as an independent characteristic of students?","Students’ cognitive beliefs, emotional responses, and behavioral tendencies toward AI may influence how they recognize, interpret, and evaluate ethical concerns related to AI."],
-["Group 1: Research Rationale & Variables","Your study separates attitudes toward AI and AI ethical awareness. Why is this distinction theoretically important?","Attitudes describe beliefs, feelings, and behavioral tendencies while ethical awareness focuses on recognizing autonomy, beneficence, and fairness."],
-["Group 1: Research Rationale & Variables","If a student is skeptical toward AI but demonstrates strong ethical awareness, how does this challenge the assumption that attitudes influence ethical awareness?","It does not necessarily challenge the framework because critical attitudes may still involve careful ethical evaluation."],
-["Group 1: Research Rationale & Variables","What consequence may occur if institutions encourage positive AI attitudes without strengthening ethical awareness?","Students may accept AI without understanding responsible use, human oversight, fairness, and ethical concerns."],
-["Group 2: Literature Review & Research Gap","Why is examining AI attitudes and ethical awareness in one predictive model a meaningful contribution?","It determines whether specific attitude dimensions explain variations in ethical awareness dimensions."],
-["Group 2: Literature Review & Research Gap","Why is behavioral attitude alone insufficient to determine ethical awareness?","Willingness to engage with AI does not guarantee understanding of ethical concerns."],
-["Group 2: Literature Review & Research Gap","Why is identifying the research gap necessary before conducting a predictive study?","It establishes what previous studies have not sufficiently explained."],
-["Group 2: Literature Review & Research Gap","If future research contradicts your expected relationship, how would you defend the value of your study?","Research tests relationships and unexpected findings can contribute new evidence."],
-["Group 3: Theoretical & Conceptual Framework","Why did your study adopt the Tripartite Model of Attitude even though the outcome is ethical awareness?","The model explains the predictor variable through cognition, affect, and behavior."],
-["Group 3: Theoretical & Conceptual Framework","Why measure cognition, affect, and behavior separately?","Attitude is multidimensional and each component may show different relationships."],
-["Group 3: Theoretical & Conceptual Framework","What misunderstanding may occur if prediction is interpreted as causation?","Prediction identifies statistical relationships, not cause-and-effect."],
-["Group 3: Theoretical & Conceptual Framework","If behavioral attitude predicts fairness while cognitive attitude does not, what does it imply?","Different attitude dimensions may relate differently to ethical dimensions."],
-["Group 4: Methodology & Measurement","Why is predictive-correlational design more appropriate than experimental design?","It examines naturally occurring relationships without manipulating variables."],
-["Group 4: Methodology & Measurement","How will you address socially desirable answers in self-report instruments?","Through confidentiality, proper administration, and acknowledging limitations."],
-["Group 4: Methodology & Measurement","Why analyze attitude dimensions as separate predictors?","To identify which specific dimensions contribute to ethical awareness prediction."],
-["Group 4: Methodology & Measurement","Why is construct distinction important between SATAI and AIEAS?","To ensure different concepts are measured."],
-["Group 4: Methodology & Measurement","Why Use Multiple Linear Regression?","To ensure different concepts are measured."],
-["Group 4: Methodology & Measurement","How is the study statistical treatment are appropriate for this study?","To ensure different concepts are measured."],
-["Group 5: Statistics, Interpretation & Defense","If regression shows significant prediction, what conclusion cannot be made?","You cannot conclude attitudes cause ethical awareness."],
-["Group 5: Statistics, Interpretation & Defense","If cognitive predicts autonomy but affective predicts fairness, what does this suggest?","Different attitude dimensions may influence different ethical dimensions."],
-["Group 5: Statistics, Interpretation & Defense","How should a significant but weak correlation be interpreted?","A relationship exists but explains limited variation."],
-["Group 5: Statistics, Interpretation & Defense","If no attitude dimensions predict ethical awareness, what explanations can be discussed?","Other factors, sample limitations, or measurement issues may influence ethical awareness."]
+["Research Rationale","Why did your study consider attitudes toward AI as a possible predictor of AI ethical awareness?","Students’ cognitive beliefs, emotional responses, and behavioral tendencies toward AI may influence ethical evaluation."],
+["Research Rationale","Why separate attitudes toward AI and ethical awareness?","Attitude describes beliefs, feelings, and behaviors while ethical awareness focuses on ethical recognition."],
+["Literature Review","Why combine AI attitudes and ethics in one predictive model?","It determines whether attitude dimensions explain ethical awareness dimensions."],
+["Framework","Why use the Tripartite Model of Attitude?","It explains cognition, affect, and behavior."],
+["Methodology","Why choose predictive-correlational design?","It examines relationships without manipulating variables."],
+["Statistics","Why can prediction not prove causation?","Statistical prediction does not establish cause and effect."]
 ];
 
-let name="";
-let index=0;
-let used=[];
 
-function start(){
-name=document.getElementById("participant").value.trim();
-if(!name){alert("Enter your name");return}
+let current=0;
+let used=[];
+let participant="";
+
+
+window.start=function(){
+
+participant=document.getElementById("name").value.trim();
+
+if(!participant)return alert("Enter name");
+
 home.classList.add("hidden");
 game.classList.remove("hidden");
+
 nextQuestion();
+
 }
+
 
 function nextQuestion(){
+
 if(used.length===questions.length){
-alert("All questions completed!");
+alert("Finished");
 return;
 }
-let i;
-do{i=Math.floor(Math.random()*questions.length)}
-while(used.includes(i));
-used.push(i);
-index=i;
 
-category.innerText=questions[i][0];
-question.innerText=questions[i][1];
-counter.innerText="Question "+used.length+" / 20";
-response.value="";
+do{
+current=Math.floor(Math.random()*questions.length);
+}
+while(used.includes(current));
+
+used.push(current);
+
+group.innerText=questions[current][0];
+counter.innerText="Question "+used.length;
+question.innerText=questions[current][1];
+answer.value="";
 next.classList.add("hidden");
-saved.classList.add("hidden");
+
 }
 
-function submitAnswer(){
-if(!response.value.trim()){
-alert("Please write your answer.");
-return;
-}
 
-let answers=JSON.parse(localStorage.answers||"[]");
-answers.push({
-name:name,
-category:questions[index][0],
-question:questions[index][1],
-answer:response.value,
-expected:questions[index][2],
-date:new Date().toLocaleString()
+window.submitAnswer=async function(){
+
+if(!answer.value.trim())
+return alert("Write answer");
+
+await addDoc(collection(db,"responses"),{
+
+name:participant,
+group:questions[current][0],
+question:questions[current][1],
+answer:answer.value,
+expectedAnswer:questions[current][2],
+timestamp:serverTimestamp()
+
 });
-localStorage.answers=JSON.stringify(answers);
 
-saved.classList.remove("hidden");
+
+status.innerText="✓ Saved to Firebase";
+
 next.classList.remove("hidden");
-}
-
-
-
-function openAdmin(){
-document.getElementById("adminModal").style.display="flex";
-}
-
-function loginAdmin(){
-
-let p=document.getElementById("adminPass").value;
-
-if(p!=="2312312312315"){
-alert("Incorrect Password");
-return;
-}
-
-document.getElementById("adminModal").style.display="none";
-document.getElementById("adminDashboard").style.display="block";
-
-loadAdminResponses();
 
 }
 
 
-function loadAdminResponses(){
+window.nextQuestion=nextQuestion;
 
-let data=JSON.parse(localStorage.answers||"[]");
 
-let box=document.getElementById("adminResponses");
-
-box.innerHTML="";
-
-if(data.length===0){
-box.innerHTML="<h2 style='color:white'>No responses yet.</h2>";
-return;
+window.openAdmin=function(){
+adminLogin.style.display="block";
 }
 
-data.forEach(x=>{
 
-box.innerHTML+=`
+window.login=async function(){
 
-<div class="admin-card">
+if(password.value!=="2312312312315")
+return alert("Wrong password");
 
-<h3>${x.name}</h3>
+adminLogin.style.display="none";
+dashboard.style.display="block";
 
-<p><b>Group:</b> ${x.category}</p>
+responses.innerHTML="";
 
-<p><b>Question:</b><br>${x.question}</p>
+const snap=await getDocs(collection(db,"responses"));
 
-<p><b>Answer:</b><br>${x.answer}</p>
+snap.forEach(doc=>{
 
-<hr>
+let x=doc.data();
 
-<p><b>Expected Answer:</b><br>${x.expected}</p>
+responses.innerHTML+=`
 
-<p><small>${x.date}</small></p>
+<div class="response">
 
-</div>
+<b>${x.name}</b><br><br>
 
-`;
+Question:<br>${x.question}<br><br>
+
+Answer:<br>${x.answer}<br><br>
+
+Expected:<br>${x.expectedAnswer}
+
+</div>`;
 
 });
 
 }
 
 
-function filterAdmin(){
+window.logout=function(){
 
-let value=document.getElementById("searchAdmin").value.toLowerCase();
-
-document.querySelectorAll(".admin-card").forEach(card=>{
-
-card.style.display=
-card.innerText.toLowerCase().includes(value)
-?"block":"none";
-
-});
+dashboard.style.display="none";
 
 }
-
-
-function logoutAdmin(){
-
-document.getElementById("adminDashboard").style.display="none";
-
-}
-
-
 
 </script>
+
 </body>
 </html>
